@@ -55,9 +55,6 @@ export default class Lyrics extends Component {
             <li className="list-group-item">
               <strong>Explicit words</strong>: {track.explicit === 0 ? 'No' : 'Yes'}
             </li>
-            <li className="list-group-item">
-              <strong>Release Date</strong>: {track.first_release_date}
-            </li>
           </ul>
         </>
       );
