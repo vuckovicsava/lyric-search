@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Lyrics extends Component {
@@ -22,6 +23,8 @@ export default class Lyrics extends Component {
 
   render() {
     const { track, lyrics } = this.state;
+    console.log(track);
+
     if (
       track === undefined || 
       lyrics === undefined || 
@@ -30,7 +33,34 @@ export default class Lyrics extends Component {
     ) {
       return <h3>Loading...</h3>;
     } else {
-      return <h1>Data</h1>;
+      return (
+        <>
+          <Link to="/" className="btn btn-dark btn-sm mb-4">Go Back</Link>
+          <div className="card">
+            <h5 className="card-header">
+              {track.track_name} by 
+              <span className="text-secondary">
+                {` ${track.artist_name}`}
+              </span>
+            </h5>
+            <div className="card-body">
+              <p className="card-text">{lyrics.lyrics_body}</p>
+            </div>
+          </div>
+
+          <ul className="list-group mt-3">
+            <li className="list-group-item">
+              <strong>Album ID</strong>: {track.album_id}
+            </li>
+            <li className="list-group-item">
+              <strong>Explicit words</strong>: {track.explicit === 0 ? 'No' : 'Yes'}
+            </li>
+            <li className="list-group-item">
+              <strong>Release Date</strong>: {track.first_release_date}
+            </li>
+          </ul>
+        </>
+      );
     }
   }
 }
